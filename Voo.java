@@ -65,8 +65,17 @@ public abstract class Voo {
         return numPassageiros;
     }
 
-    public void setNumPassageiros(int numPassageiros) {
-        this.numPassageiros = numPassageiros;
+    public void setNumPassageiros(int numPassageiros) throws NumPeqPsgException, NumGrdPsgException {
+
+        if(numPassageiros <=0) {
+            throw new NumPeqPsgException();
+        }
+        else if(numPassageiros > 853){
+            throw new NumGrdPsgException();
+        }
+        else{
+            this.numPassageiros = numPassageiros;
+        }
     }
 
     public float getTempoDeViagem() {
@@ -84,6 +93,7 @@ public abstract class Voo {
     public void setDistancia(int distancia) {
         this.distancia = distancia;
     }
+
     
 }
 

@@ -1,20 +1,24 @@
 //Felipe Alves Barea RA: 2454343
-public final class Nacioanl  extends Voo implements VerificaChegadaSaida{
+public final class Nacional  extends Voo implements VerificaChegadaSaida{
     
     private String estadoSaida;
     private String estadoDestino;
 
-    public Nacioanl(String estadoSaida, String estadoDestino) {
+    //sobrecarga
+    public Nacional(String estadoSaida, String estadoDestino) {
         this.estadoSaida = estadoSaida;
         this.estadoDestino = estadoDestino;
     }
 
-    public Nacioanl(String horSaida, String horChegada, String cidadeSaida, String cidadeDestino, int numPassageiros, float tempoDeViagem, int distancia, String estadoSaida, String estadoDestino) {
+    //sobrecarga
+    public Nacional(String horSaida, String horChegada, String cidadeSaida, String cidadeDestino, int numPassageiros, float tempoDeViagem, int distancia, String estadoSaida, String estadoDestino) {
         super(horSaida, horChegada, cidadeSaida, cidadeDestino, numPassageiros, tempoDeViagem, distancia);
         this.estadoSaida = estadoSaida;
         this.estadoDestino = estadoDestino;
     }
-    public Nacioanl() {
+
+    //sobrecarga
+    public Nacional() {
         estadoSaida = null;
         estadoDestino = null;
     }

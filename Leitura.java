@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 
 public class Leitura{
 
-	public String entDados(String rotulo){
+	public static String entDados(String rotulo){
 
 		System.out.println(rotulo);
 		String resp = "";

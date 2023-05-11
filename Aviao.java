@@ -6,14 +6,17 @@ public class Aviao {
     private Motor motor;
     private String fabricanteAviao;
     private String modelo;
+    private String codAviao;
+    private int tipoVoo;
 
     private Estadual estadual;
     private Internacional internacional;
-    private Nacioanl nacional;
+    private Nacional nacional;
     
     private List<Passageiro> passageiros;
     private List<Tripulante> tripulante;
     
+    //sobrecarga
     public Aviao(){
         motor = null;
         fabricanteAviao = null;
@@ -25,7 +28,8 @@ public class Aviao {
         modelo = null;
 
     }
-    public Aviao(Motor motor, String fabricanteAviao, Nacioanl nacional,String modelo, List<Passageiro> passageiros, List<Tripulante> tripulante) {
+    //sobrecarga
+    public Aviao(Motor motor, String fabricanteAviao, Nacional nacional,String modelo, List<Passageiro> passageiros, List<Tripulante> tripulante) {
         this.motor = motor;
         this.fabricanteAviao = fabricanteAviao;
         this.nacional = nacional;
@@ -35,7 +39,7 @@ public class Aviao {
         estadual = null;
         internacional = null;
     }
-
+    //sobrecarga
     public Aviao(Motor motor, String fabricanteAviao, Internacional internacional,String modelo, List<Passageiro> passageiros,List<Tripulante> tripulante) {
         this.motor = motor;
         this.fabricanteAviao = fabricanteAviao;
@@ -46,7 +50,7 @@ public class Aviao {
         estadual = null;
         nacional = null;
     }
-
+    //sobrecarga
     public Aviao(Motor motor, String fabricanteAviao, Estadual estadual, String modelo, List<Passageiro> passageiros, List<Tripulante> tripulante) {
         this.motor = motor;
         this.fabricanteAviao = fabricanteAviao;
@@ -58,6 +62,13 @@ public class Aviao {
         nacional = null;
     }
 
+    public String getCodAviao(){
+        return codAviao;
+    }
+
+    public void setCodAviao(String codAviao){
+        this.codAviao = codAviao;
+    }
     public Motor getMotor() {
         return motor;
     }
@@ -74,7 +85,7 @@ public class Aviao {
         return internacional;
     }
 
-    public Nacioanl getNacional() {
+    public Nacional getNacional() {
         return nacional;
     }
 
@@ -106,7 +117,7 @@ public class Aviao {
         this.internacional = internacional;
     }
 
-    public void setNacional(Nacioanl nacional) {
+    public void setNacional(Nacional nacional) {
         this.nacional = nacional;
     }
 
@@ -120,19 +131,32 @@ public class Aviao {
     public void setModelo(String modelo){
         this.modelo = modelo;
     }
+    public int getTipoVoo() {
+        return tipoVoo;
+    }
+    public void setTipoVoo(int tipoVoo) {
+        this.tipoVoo = tipoVoo;
+    }
+
+
 
     
     public float calcCombNec(){
 
-        if(nacional != null){
-            return nacional.getDistancia() * motor.getConsumo();
-        }
-        else if(internacional != null){
+        if(tipoVoo == 1) {
 
-            return internacional.getDistancia() * motor.getConsumo();
+            return nacional.getTempoDeViagem() * motor.getConsumo();
+
         }
-        else if(estadual != null){
-            return estadual.getDistancia() * motor.getConsumo();
+        else if(tipoVoo == 2) {
+
+            return internacional.getTempoDeViagem() * motor.getConsumo();
+
+        }
+        else if(tipoVoo == 3) {
+
+            return estadual.getTempoDeViagem() * motor.getConsumo();
+
         }
         else{
             return 0;
@@ -148,21 +172,5 @@ public class Aviao {
 
         tripulante.clear();
     }
-
-    public Passageiro procuraPassageiro(String ticketPorcurado){
-
-        for (Passageiro cadaPassageiro : passageiros) {
-            
-            if(cadaPassageiro.getTicket().equals(ticketPorcurado)){
-
-                Passageiro pass = cadaPassageiro;
-                return pass;
-            }
-            
-        }
-        return null;
-    }
-
-
 
 }

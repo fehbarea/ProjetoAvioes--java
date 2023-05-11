@@ -19,14 +19,28 @@ public final class Tripulante extends Pessoa {
     public String getCargo() {
         return cargo;
     }
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setCargo(String cargo) throws NaoNuloException{
+
+        if(cargo.length() > 3){
+            this.cargo = cargo;
+        }
+
+        else{
+            throw new NaoNuloException();
+        }
+    
     }
     public int getLicenca() {
         return licenca;
     }
-    public void setLicenca(int licenca) {
-        this.licenca = licenca;
+    public void setLicenca(int licenca) throws NaoNuloException {
+
+        if(licenca != 0){
+            this.licenca = licenca;
+        }
+        else{
+            throw new NaoNuloException();
+        }
     }
 
     
